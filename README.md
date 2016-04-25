@@ -1,7 +1,7 @@
 # Docker Build for Cling (C++ Interpreter)
 
-[![](https://img.shields.io/badge/Github-maddouri%2Fcling--ubuntu--docker-brightgreen.svg)](https://github.com/maddouri/cling-ubuntu-docker)
-[![](https://img.shields.io/badge/Docker%20Hub-maddouri%2Fcling--ubuntu--docker-blue.svg)](https://hub.docker.com/r/maddouri/cling-ubuntu-docker)
+[![](https://img.shields.io/badge/Github-maddouri%2Fcling--ubuntu--docker-brightgreen.svg?style=flat-square)](https://github.com/maddouri/cling-ubuntu-docker)
+[![](https://img.shields.io/badge/Docker%20Hub-maddouri%2Fcling--ubuntu--docker-blue.svg?style=flat-square)](https://hub.docker.com/r/maddouri/cling-ubuntu-docker)
 
 
 A dockerized build of CERN's [Cling](https://root.cern.ch/cling).
