@@ -3,7 +3,7 @@
 [![](https://img.shields.io/badge/Github-maddouri%2Fcling--ubuntu--docker-brightgreen.svg?style=flat-square)](https://github.com/maddouri/cling-ubuntu-docker)
 [![](https://img.shields.io/badge/Docker%20Hub-maddouri%2Fcling--ubuntu--docker-blue.svg?style=flat-square)](https://hub.docker.com/r/maddouri/cling-ubuntu-docker)
 
-[![Build Status](https://travis-ci.org/maddouri/cling-ubuntu-docker.svg?branch=develop)](https://travis-ci.org/maddouri/cling-ubuntu-docker)
+[![License](https://img.shields.io/github/license/maddouri/cling-ubuntu-docker.svg?style=flat-square)](LICENSE)
 
 A dockerized build of CERN's [Cling](https://root.cern.ch/cling).
 
