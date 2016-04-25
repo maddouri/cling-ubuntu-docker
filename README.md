@@ -8,11 +8,33 @@
 * Dockerized build of CERN's [Cling](https://root.cern.ch/cling).
 * Based on Ubuntu 14.04. (can be changed in the [`Dockerfile`](./Dockerfile))
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Usage](#usage)
+  - [Get the Image from Docker Hub](#get-the-image-from-docker-hub)
+  - [Build It Yourself](#build-it-yourself)
+- [Notes](#notes)
+  - [Defining Aliases](#defining-aliases)
+  - [Accessing the Host's File System](#accessing-the-hosts-file-system)
+  - [Using Pipes](#using-pipes)
+  - [Run Bash in the Container](#run-bash-in-the-container)
+  - [Why ?](#why-)
+  - [Which Version of Cling is Available in the Docker Image ?](#which-version-of-cling-is-available-in-the-docker-image-)
+  - [Automated Builds](#automated-builds)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Usage
 
-You can either get the image from Docker Hub or build it yourself.
+1. [Install docker](https://docs.docker.com/engine/installation/)
+2. Get the image from Docker Hub or build it yourself
+3. Use it like any other docker image
 
-### The Easy Way
+
+### Get the Image from Docker Hub
 
 ```bash
 # get the build from docker hub
@@ -30,7 +52,7 @@ cd cling-ubuntu-docker
 # depending on your machine, this might take a while to finish building
 docker build -t my_cling_image .
 # run it ! (the entry point is cling)
-docker run -it my_cling_image cling
+docker run -it my_cling_image
 ```
 
 ## Notes
@@ -41,9 +63,7 @@ docker run -it my_cling_image cling
 alias cling='docker run -it maddouri/cling-ubuntu-docker'
 ```
 
-### Working with Files
-
-#### Acessing the File System
+### Accessing the Host's File System
 
 As with any other Docker images, you can access your file system from the container by attaching volumes to it:
 
@@ -77,16 +97,23 @@ Hello Dockerized Cling !
 $ # back to the host machine
 ```
 
-#### Using Pipes
+### Using Pipes
 
 ```bash
 # NB: use "-i" instead of "-it" when piping
 echo -e '#include <iostream>\n std::cout <<  "Hello Dockerized Cling !" << std::endl;' | docker run -i maddouri/cling-ubuntu-docker
 ```
 
+### Run Bash in the Container
+
+```bash
+# use bash as the new entry point
+docker run -it --entrypoint=/bin/bash maddouri/cling-ubuntu-docker
+```
+
 ### Why ?
 
-Due to [an issue](https://github.com/vgvassilev/cling/issues/80), I couldn't get a precompiled version of cling for my Ubuntu 16.04 machine, neither did the current sources compile on my platform (GCC 5 not supported).
+Due to [an issue](https://github.com/vgvassilev/cling/issues/80), I couldn't get a precompiled version of cling for my Ubuntu 16.04 machine, neither did the current sources compile on my platform. (GCC 5 not supported)
 
 ### Which Version of Cling is Available in the Docker Image ?
 
@@ -95,7 +122,7 @@ When building an image, [`build-cling.sh`](./build-cling.sh) clones the latest c
 The exact commit SHA1 can be found in the `${CLING_COMMIT_SHA1}` file:
 
 ```bash
-docker run -it maddouri/cling-ubuntu-docker bash
+docker run -it --entrypoint=/bin/bash maddouri/cling-ubuntu-docker
 cat ${CLING_COMMIT_SHA1}
 ```
 
