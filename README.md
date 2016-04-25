@@ -1,7 +1,10 @@
 # Docker Build for Cling (C++ Interpreter)
 
-* Based on Ubuntu (can be changed to any other _compatible_ OS/version in the [`Dockerfile`](./Dockerfile))
-* Uses CERN's [`clone.sh`](https://github.com/karies/cling-all-in-one/blob/master/clone.sh) (cf. [Cling Build Instructions](https://root.cern.ch/cling-build-instructions))
+[![](https://img.shields.io/badge/Github-maddouri%2Fcling--ubuntu--docker-brightgreen.svg)](https://github.com/maddouri/cling-ubuntu-docker)
+[![](https://img.shields.io/badge/Docker%20Hub-maddouri%2Fcling--ubuntu--docker-blue.svg)](https://hub.docker.com/r/maddouri/cling-ubuntu-docker)
+
+
+A dockerized build of CERN's [Cling](https://root.cern.ch/cling).
 
 ## Usage
 
@@ -12,8 +15,8 @@ You can either get the image from Docker Hub or build it yourself.
 ```bash
 # get the build from docker hub
 docker pull maddouri/cling-ubuntu-docker
-# run it !
-docker run -ti maddouri/cling-ubuntu-docker cling
+# run it ! (the entry point is cling)
+docker run -it maddouri/cling-ubuntu-docker
 ```
 
 ### Build It Yourself
@@ -24,8 +27,8 @@ git clone https://github.com/maddouri/cling-ubuntu-docker.git
 cd cling-ubuntu-docker
 # depending on your machine, this might take a while to finish building
 docker build -t my_cling_image .
-# run it !
-docker run -ti my_cling_image cling
+# run it ! (the entry point is cling)
+docker run -it my_cling_image cling
 ```
 
 ## Notes
@@ -33,16 +36,19 @@ docker run -ti my_cling_image cling
 ### Defining Aliases
 
 ```bash
-alias cling='docker run -ti maddouri/cling-ubuntu-docker cling'
+alias cling='docker run -it maddouri/cling-ubuntu-docker'
 ```
 
 ### Working with Files
 
+#### Acessing the File System
+
 As with any other Docker images, you can access your file system from the container by attaching volumes to it:
 
+Syntax:
+
 ```bash
-# syntax
-docker run -v /path/to/host/folder:/path/to/container/folder -ti maddouri/cling-ubuntu-docker cling
+docker run -v /path/to/host/folder:/path/to/container/folder -it maddouri/cling-ubuntu-docker
 ```
 
 Usage example:
@@ -57,7 +63,7 @@ void sayHi() {
     std::cout << "Hello Dockerized Cling !" << std::endl;
 }
 
-$ docker run -v /media/data/myCode:/code -ti maddouri/cling-ubuntu-docker cling
+$ docker run -v /media/data/myCode:/code -it maddouri/cling-ubuntu-docker
 ****************** CLING ******************
 * Type C++ code and press enter to run it *
 *             Type .q to exit             *
@@ -67,4 +73,11 @@ $ docker run -v /media/data/myCode:/code -ti maddouri/cling-ubuntu-docker cling
 Hello Dockerized Cling !
 [cling]$ .q
 $ # back to the host machine
+```
+
+#### Piping
+
+```bash
+# NB: use "-i" instead of "-it" when piping
+echo -e '#include <iostream>\n std::cout <<  "Hello Dockerized Cling !" << std::endl;' | docker run -i maddouri/cling-ubuntu-docker
 ```
