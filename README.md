@@ -36,7 +36,7 @@
 
 ### Get the Image from Docker Hub
 
-```bash
+```shell
 # get the build from docker hub
 docker pull maddouri/cling-ubuntu-docker
 # run it ! (the entry point is cling)
@@ -45,7 +45,7 @@ docker run -it maddouri/cling-ubuntu-docker
 
 ### Build It Yourself
 
-```bash
+```shell
 # get the Dockerfile
 git clone https://github.com/maddouri/cling-ubuntu-docker.git
 cd cling-ubuntu-docker
@@ -59,7 +59,7 @@ docker run -it my_cling_image
 
 ### Defining Aliases
 
-```bash
+```shell
 alias cling='docker run -it maddouri/cling-ubuntu-docker'
 ```
 
@@ -69,13 +69,13 @@ As with any other Docker images, you can access your file system from the contai
 
 Syntax:
 
-```bash
+```shell
 docker run -v /path/to/host/folder:/path/to/container/folder -it maddouri/cling-ubuntu-docker
 ```
 
 Usage example:
 
-```bash
+```shell
 $ ls /media/data/myCode
 func.cpp
 
@@ -99,14 +99,14 @@ $ # back to the host machine
 
 ### Using Pipes
 
-```bash
+```shell
 # NB: use "-i" instead of "-it" when piping
 echo -e '#include <iostream>\n std::cout <<  "Hello Dockerized Cling !" << std::endl;' | docker run -i maddouri/cling-ubuntu-docker
 ```
 
 ### Run Bash in the Container
 
-```bash
+```shell
 # use bash as the new entry point
 docker run -it --entrypoint=/bin/bash maddouri/cling-ubuntu-docker
 ```
@@ -121,7 +121,7 @@ When building an image, [`build-cling.sh`](./build-cling.sh) clones the latest c
 
 The exact commit SHA1 can be found in the `${CLING_COMMIT_SHA1}` file:
 
-```bash
+```shell
 docker run -it --entrypoint=/bin/bash maddouri/cling-ubuntu-docker
 cat ${CLING_COMMIT_SHA1}
 ```
