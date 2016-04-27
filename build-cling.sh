@@ -85,5 +85,5 @@ function main() {
 
 # execute the given args (should be a function name, @see USAGE)
 for f in "$@" ; do
-    ${f} || >&2 echo "$(readlink -f $0) [$@] failed at [${f}]" && exit 1
+    ${f} || { >&2 echo "$(readlink -f $0) [$@] failed at [${f}]" && exit 1; }
 done
