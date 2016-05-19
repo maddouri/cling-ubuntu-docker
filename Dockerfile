@@ -1,4 +1,4 @@
-FROM maddouri/cling-ubuntu-docker_sub-build-2
+FROM maddouri/cling-ubuntu-docker_auto:sub-2
 
 MAINTAINER Mohamed-Yassine MADDOURI
 
