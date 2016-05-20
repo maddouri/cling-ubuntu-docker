@@ -1,10 +1,6 @@
-FROM ubuntu:14.04
+FROM maddouri/cling-ubuntu-docker_auto:sub-build-2
 
 MAINTAINER Mohamed-Yassine MADDOURI
-
-ADD ./build-cling.sh /root/build-cling.sh
-
-RUN /usr/bin/env bash /root/build-cling.sh main
 
 ENV         CLING_DIR="/opt/cling"                    \
                 CLING="/opt/cling/bin/cling"          \
