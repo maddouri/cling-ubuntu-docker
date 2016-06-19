@@ -23,7 +23,12 @@ function initialize() {
 
 function get_dependencies() {
     apt-get -qq  update
-    apt-get -qqy install build-essential git cmake python
+    apt-get -qqy install build-essential git python wget
+
+    # install a recent cmake version
+    wget -qO- https://cmake.org/files/v3.5/cmake-3.5.2-Linux-x86_64.tar.gz | tar xzf - -C /opt/
+    echo 'export PATH="/opt/cmake-3.5.2-Linux-x86_64/bin:$PATH"' >> ~/.bashrc
+    export PATH="/opt/cmake-3.5.2-Linux-x86_64/bin:$PATH"
 }
 
 function clone_fast() {  # clone <repo_name> <branch> <dir>
