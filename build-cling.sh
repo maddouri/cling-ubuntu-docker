@@ -70,6 +70,10 @@ function write_cling_sha1() {
 function cleanup() {
     cd /
     rm -rf "${WORK_DIR}"
+
+    apt-get clean
+    rm -rf /var/lib/apt/lists/*
+    rm -rf /tmp/*
 }
 
 
