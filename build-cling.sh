@@ -49,8 +49,14 @@ function configure_build() {
 
 function sub_build_1() {
     cd "${BUILD_DIR}"
-    make --jobs=$(nproc) llvm-lto
+    make --jobs=$(nproc) obj.llvm-tblgen LLVMSupport LLVMTableGen llvm-tblgen intrinsics_gen LLVMProfileData AttributeCompatFuncTableGen LLVMCore LLVMIRReader LLVMCodeGen LLVMSelectionDAG LLVMAsmPrinter LLVMGlobalISel LLVMBitReader LLVMBitWriter LLVMTransformUtils LLVMInstrumentation LLVMInstCombine LLVMScalarOpts LLVMipo LLVMVectorize LLVMObjCARCOpts LLVMLinker LLVMAnalysis LLVMLTO LLVMMC LLVMMCParser LLVMMCDisassembler LLVMObject LLVMDebugInfoCodeView LLVMTarget
 }
+
+# function sub_build_2() {
+#     cd "${BUILD_DIR}"
+#     make --jobs=$(nproc) obj.llvm-tblgen LLVMSupport LLVMTableGen llvm-tblgen intrinsics_gen LLVMProfileData AttributeCompatFuncTableGen LLVMCore LLVMIRReader LLVMCodeGen LLVMSelectionDAG LLVMAsmPrinter LLVMGlobalISel LLVMBitReader LLVMBitWriter LLVMTransformUtils LLVMInstrumentation LLVMInstCombine LLVMScalarOpts LLVMipo LLVMVectorize LLVMObjCARCOpts LLVMLinker LLVMAnalysis LLVMLTO LLVMMC LLVMMCParser LLVMMCDisassembler LLVMObject LLVMDebugInfoCodeView LLVMTarget
+#     make --jobs=$(nproc) llvm-lto
+# }
 
 function sub_build_2() {
     cd "${BUILD_DIR}"
